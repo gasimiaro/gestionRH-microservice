@@ -3,6 +3,16 @@
 **A modern, microservices-based HR and insurance management system built with Node.js, TypeScript, Apollo Federation, and SQLite.**
 
 ---
+## ✅ Collaborator
+
+- **1062 H-F : RAKOTOMALALA Mianja Hariliva Mirantsoa** 
+- **1063 H-F : RAFANOMEZANTOA Antsivaniaina Stéphan**
+- **1066 H-F : ANDRIAMAHERISOA Rijalalaina Nastina**
+- **1084 H-F : RAMIARAMANANA Mbolatiana Harinavalona**
+- **1090 H-F : RAKOTONIRINA Njaraniaina James**
+- **1160 H-F : GASIMIARO Herimana Mandimby**
+
+---
 
 ## 📋 Overview
 
