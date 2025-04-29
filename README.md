@@ -1,6 +1,6 @@
 # 🌟 GestionRH Microservices
 
-**A modern, microservices-based HR and insurance management system built with Node.js, TypeScript, Apollo Federation, and PostgreSQL.**
+**A modern, microservices-based HR and insurance management system built with Node.js, TypeScript, Apollo Federation, and SQLite.**
 
 ---
 
@@ -16,15 +16,15 @@ The project is designed as a **microservices architecture** with the following c
 
 - **User Service**  
   Manages user operations (create, update, retrieve) and hierarchical relationships (e.g., `advisedBy` and `advisees`).  
-  **Database**: `user_db` (PostgreSQL).
+  **Database**: `user_db` (SQLite).
 
 - **Insurance Service**  
   Handles insurance companies and beneficiary registrations, linking them to users.  
-  **Database**: `insurance_db` (PostgreSQL).
+  **Database**: `insurance_db` (SQLite).
 
 - **Notification Service**  
   Manages notifications and email sending (e.g., user name updates) using **Nodemailer** with Gmail SMTP.  
-  **Database**: `notification_db` (PostgreSQL).
+  **Database**: `notification_db` (SQLite).
 
 - **Gateway**  
   Combines schemas from all services into a unified **GraphQL API** using **Apollo Federation**.  
@@ -39,7 +39,7 @@ The project is designed as a **microservices architecture** with the following c
 | **Node.js** (v20.19.0) | Runtime environment                     |
 | **TypeScript**         | Type safety and developer experience    |
 | **Apollo Federation**  | Unified GraphQL schema composition      |
-| **Sequelize**          | ORM for PostgreSQL                      |
+| **Sequelize**          | ORM for SQLite                      |
 | **SQLite**             | Relational database                     |
 | **Nodemailer**         | Email notifications via Gmail SMTP      |
 | **GraphQL**            | API query language                      |
@@ -87,7 +87,7 @@ EMAIL_PASSWORD=your_app_password
 
 *Ensure your Gmail account has an App Password configured for `EMAIL_PASSWORD`.*
 
-### 4. Set Up PostgreSQL Databases
+### 4. Set Up SQLite Databases
 Create the required databases:
 ```sql
 CREATE DATABASE user_db;
@@ -267,7 +267,7 @@ insurance-microservices/
 
 ## 📝 Notes
 
-- Each service uses a separate PostgreSQL database (`user_db`, `insurance_db`, `notification_db`).
+- Each service uses a separate SQLite database (`user_db`, `insurance_db`, `notification_db`).
 - The **Gateway** composes schemas using **Apollo Federation** but currently runs as a single server.
 - Notifications are sent via email using **Nodemailer** with Gmail SMTP.
 - Ensure valid Gmail credentials (App Password) in the `.env` file.
