@@ -40,7 +40,7 @@ The project is designed as a **microservices architecture** with the following c
 | **TypeScript**         | Type safety and developer experience    |
 | **Apollo Federation**  | Unified GraphQL schema composition      |
 | **Sequelize**          | ORM for PostgreSQL                      |
-| **SQLite               | Relational database                     |
+| **SQLite**             | Relational database                     |
 | **Nodemailer**         | Email notifications via Gmail SMTP      |
 | **GraphQL**            | API query language                      |
 
