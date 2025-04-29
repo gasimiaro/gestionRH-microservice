@@ -1,133 +1,157 @@
-GestionRH Microservices
-A microservices-based insurance management system using Node.js, TypeScript, Apollo Federation, and PostgreSQL.
-Overview
-This project transforms a monolithic insurance management system into a microservices architecture. It provides a unified GraphQL API for managing HR-related functionalities, including user management, insurance registration, and notifications. The system leverages Apollo Federation for schema composition, Sequelize for database management, and TypeScript for type safety.
-Architecture
-The project is structured as a microservices architecture with the following components:
+# 🌟 GestionRH Microservices
 
-User Service: Manages user operations such as creating, updating, and retrieving users. It handles hierarchical relationships (e.g., advisedBy and advisees) and stores user data in a PostgreSQL database (user_db).
-Insurance Service: Handles insurance companies and beneficiary registrations. It allows creating insurance companies and registering beneficiaries, linking them to users. Data is stored in a PostgreSQL database (insurance_db).
-Notification Service: Manages notifications and email sending. It sends notifications to users (e.g., when a user’s name is updated) and supports email notifications via Nodemailer using Gmail SMTP. Data is stored in a PostgreSQL database (notification_db).
-Gateway: Composes schemas from all services into a unified GraphQL API using Apollo Federation. Currently, all services are combined in a single server, but the architecture is designed to be split into separate services in the future.
+**A modern, microservices-based HR and insurance management system built with Node.js, TypeScript, Apollo Federation, and PostgreSQL.**
 
-Technology Stack
+---
 
-Node.js: Runtime environment (v20.19.0).
-TypeScript: For type safety and better developer experience.
-Apollo Federation: Composes multiple GraphQL schemas into a single API.
-Sequelize: ORM for PostgreSQL database management.
-PostgreSQL: Database for storing user, insurance, and notification data.
-Nodemailer: For sending email notifications via Gmail SMTP.
-GraphQL: API query language for interacting with the services.
+## 📋 Overview
 
-Prerequisites
+**GestionRH Microservices** transforms a monolithic HR and insurance management system into a scalable microservices architecture. It provides a unified **GraphQL API** to manage HR-related functionalities such as user management, insurance registration, and notifications. The system leverages **Apollo Federation** for schema composition, **Sequelize** for database management, and **TypeScript** for type safety.
 
-Node.js (v20.19.0 or higher)
-PostgreSQL (running on localhost:5432 or configured accordingly)
-npm (v10.x or higher)
-A Gmail account with an App Password for email notifications (see Google App Passwords for setup)
+---
 
-Setup
+## 🏗️ Architecture
 
-Clone the repository:
-git clone https://github.com/<ton-utilisateur>/gestionRH-microservice.git
+The project is designed as a **microservices architecture** with the following components:
+
+- **User Service**  
+  Manages user operations (create, update, retrieve) and hierarchical relationships (e.g., `advisedBy` and `advisees`).  
+  **Database**: `user_db` (PostgreSQL).
+
+- **Insurance Service**  
+  Handles insurance companies and beneficiary registrations, linking them to users.  
+  **Database**: `insurance_db` (PostgreSQL).
+
+- **Notification Service**  
+  Manages notifications and email sending (e.g., user name updates) using **Nodemailer** with Gmail SMTP.  
+  **Database**: `notification_db` (PostgreSQL).
+
+- **Gateway**  
+  Combines schemas from all services into a unified **GraphQL API** using **Apollo Federation**.  
+  *Note*: Currently runs as a single server but is designed for future separation.
+
+---
+
+## 🛠️ Technology Stack
+
+| **Technology**         | **Purpose**                              |
+|-------------------------|------------------------------------------|
+| **Node.js** (v20.19.0) | Runtime environment                     |
+| **TypeScript**         | Type safety and developer experience    |
+| **Apollo Federation**  | Unified GraphQL schema composition      |
+| **Sequelize**          | ORM for PostgreSQL                      |
+| **PostgreSQL**         | Relational database                     |
+| **Nodemailer**         | Email notifications via Gmail SMTP      |
+| **GraphQL**            | API query language                      |
+
+---
+
+## ✅ Prerequisites
+
+- **Node.js**: v20.19.0 or higher
+- **PostgreSQL**: Running on `localhost:5432` (or configured)
+- **npm**: v10.x or higher
+- **Gmail Account**: With an [App Password](https://support.google.com/accounts/answer/185833) for email notifications
+
+---
+
+## 🚀 Setup
+
+Follow these steps to get the project up and running:
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/gasimiaro/gestionRH-microservice.git
 cd gestionRH-microservice
+```
 
-
-Install Dependencies:
+### 2. Install Dependencies
+```bash
 npm install
+```
 
-
-Configure Environment:Copy the .env.example file to .env and fill in the required values:
+### 3. Configure Environment
+Copy the `.env.example` file to `.env` and update it with your credentials:
+```bash
 cp .env.example .env
+```
 
-Update .env with your database credentials and email settings. Example .env:
-# Database configuration for User service
+Example `.env`:
+```env
+# User Service Database
 USER_DB_HOST=localhost
 USER_DB_PORT=5432
 USER_DB_NAME=user_db
 USER_DB_USER=postgres
-USER_DB_PASSWORD=your_password_here
+USER_DB_PASSWORD=your_password
 
-# Database configuration for Insurance service
+# Insurance Service Database
 INSURANCE_DB_HOST=localhost
 INSURANCE_DB_PORT=5432
 INSURANCE_DB_NAME=insurance_db
 INSURANCE_DB_USER=postgres
-INSURANCE_DB_PASSWORD=your_password_here
+INSURANCE_DB_PASSWORD=your_password
 
-# Database configuration for Notification service
+# Notification Service Database
 NOTIFICATION_DB_HOST=localhost
 NOTIFICATION_DB_PORT=5432
 NOTIFICATION_DB_NAME=notification_db
 NOTIFICATION_DB_USER=postgres
-NOTIFICATION_DB_PASSWORD=your_password_here
+NOTIFICATION_DB_PASSWORD=your_password
 
-# Email service for notifications
+# Email Configuration
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
 EMAIL_USER=your_email@gmail.com
 EMAIL_PASSWORD=your_app_password
+```
 
-Ensure your Gmail account has an App Password configured for EMAIL_PASSWORD.
+*Ensure your Gmail account has an App Password configured for `EMAIL_PASSWORD`.*
 
-Set up PostgreSQL Databases:Create the following databases in PostgreSQL:
-
-user_db
-insurance_db
-notification_db
-
-You can create them using the following commands:
+### 4. Set Up PostgreSQL Databases
+Create the required databases:
+```sql
 CREATE DATABASE user_db;
 CREATE DATABASE insurance_db;
 CREATE DATABASE notification_db;
+```
 
+### 5. Install Service-Specific Dependencies
+```bash
+cd user-service && npm install
+cd ../insurance-service && npm install
+cd ../notification-service && npm install
+cd ../gateway && npm install
+```
 
-1. **Install Dependencies**:
-   ```bash
-   cd user-service
-   npm install
-   cd ../insurance-service
-   npm install
-   cd ../notification-service
-   npm install
-   cd ../gateway
-   npm install
-   ```
+### 6. Start the Services
+Run each service in a separate terminal:
+```bash
+# Terminal 1: User Service
+cd user-service
+npm start
 
-2. **Configure Environment**:
-   Create a `.env` file in the project root:
-   ```
-   EMAIL_USER=your_email@gmail.com
-   EMAIL_PASSWORD=your_app_password
-   ```
+# Terminal 2: Insurance Service
+cd insurance-service
+npm start
 
-3. **Start Services**:
-   Open separate terminals and run:
-   ```bash
-   # Terminal 1
-   cd user-service
-   npm start
-   
-   # Terminal 2
-   cd insurance-service
-   npm start
-   
-   # Terminal 3
-   cd notification-service
-   npm start
-   
-   # Terminal 4
-   cd gateway
-   npm start
-   ```
+# Terminal 3: Notification Service
+cd notification-service
+npm start
 
-## Test the Application
+# Terminal 4: Gateway
+cd gateway
+npm start
+```
 
-Use a GraphQL client (e.g., Apollo Studio) to query the Gateway at http://localhost:4000.
+---
 
+## 🧪 Test the Application
 
-Example Mutation: Register a User
+Access the **GraphQL API** at `http://localhost:4000` using a GraphQL client like **Apollo Studio**.
+
+### Example Mutation: Register a User
+```graphql
 mutation {
   createUser(input: {
     matricule: "USER123"
@@ -141,8 +165,10 @@ mutation {
     email
   }
 }
+```
 
-Example Query: Get User Details
+### Example Query: Get User Details
+```graphql
 query {
   user(matricule: "USER123") {
     matricule
@@ -155,8 +181,10 @@ query {
     }
   }
 }
+```
 
-Example Mutation: Create an Insurance Company
+### Example Mutation: Create an Insurance Company
+```graphql
 mutation {
   createInsuranceCompany(input: {
     companyName: "InsuranceCo"
@@ -166,8 +194,10 @@ mutation {
     companyName
   }
 }
+```
 
-Example Mutation: Register a Beneficiary
+### Example Mutation: Register a Beneficiary
+```graphql
 mutation {
   registerBeneficiary(input: {
     companyId: "1"
@@ -181,38 +211,135 @@ mutation {
     nomNouveauBeneficiaire
   }
 }
+```
 
-Project Structure
+---
 
-src/schema/: Contains GraphQL schema definitions and resolvers.
-common.schema.ts: Shared types and scalars.
-user.schema.ts: User service schema and resolvers.
-insurance.schema.ts: Insurance service schema and resolvers.
-notification.schema.ts: Notification service schema and resolvers.
+## 📂 Project Structure
 
+```plaintext
+insurance-microservices/
+├── user-service/
+│   ├── src/
+│   │   ├── config/
+│   │   │   └── database.ts
+│   │   ├── controllers/
+│   │   │   └── user.controller.ts
+│   │   ├── services/
+│   │   │   └── user.service.ts
+│   │   ├── models/
+│   │   │   └── User.ts
+│   │   ├── graphql/
+│   │   │   ├── schema.ts
+│   │   │   └── resolvers.ts
+│   │   ├── types/
+│   │   │   └── user.ts
+│   │   └── index.ts
+│   ├── package.json
+│   └── database.sqlite
+├── insurance-service/
+│   ├── src/
+│   │   ├── config/
+│   │   │   └── database.ts
+│   │   ├── controllers/
+│   │   │   └── insurance.controller.ts
+│   │   ├── services/
+│   │   │   └── insurance.service.ts
+│   │   ├── models/
+│   │   │   └── InsuranceCompany.ts
+│   │   │   └── BeneficiaryRegistration.ts
+│   │   ├── graphql/
+│   │   │   ├── schema.ts
+│   │   │   └── resolvers.ts
+│   │   ├── types/
+│   │   │   └── insurance.ts
+│   │   └── index.ts
+│   ├── package.json
+│   └── database.sqlite
+├── notification-service/
+│   ├── src/
+│   │   ├── config/
+│   │   │   └── database.ts
+│   │   ├── controllers/
+│   │   │   └── notification.controller.ts
+│   │   ├── services/
+│   │   │   └── notification.service.ts
+│   │   ├── models/
+│   │   │   └── Notification.ts
+│   │   ├── graphql/
+│   │   │   ├── schema.ts
+│   │   │   └── resolvers.ts
+│   │   ├── types/
+│   │   │   └── notification.ts
+│   │   └── index.ts
+│   ├── package.json
+│   └── database.sqlite
+├── gateway/
+│   ├── src/
+│   │   └── index.ts
+│   ├── package.json
+│   └── .env
+├── .env
+└── README.md
+ documentation
+```
 
-src/config/: Database configuration files for each service.
-src/controllers/: Business logic for each service.
-src/models/: Sequelize models for database tables.
-src/server.ts: Main entry point combining all services into a single GraphQL API.
+---
 
-Notes
+## 📝 Notes
 
-Each service uses a separate PostgreSQL database (user_db, insurance_db, notification_db).
-The Gateway composes schemas using Apollo Federation, currently running in a single server.
-Notifications are sent via email using Nodemailer with Gmail SMTP.
-Ensure your .env file has valid Gmail credentials (use an App Password for EMAIL_PASSWORD).
-The project is designed to be split into separate services (user-service, insurance-service, notification-service, and gateway) in the future for better scalability.
+- Each service uses a separate PostgreSQL database (`user_db`, `insurance_db`, `notification_db`).
+- The **Gateway** composes schemas using **Apollo Federation** but currently runs as a single server.
+- Notifications are sent via email using **Nodemailer** with Gmail SMTP.
+- Ensure valid Gmail credentials (App Password) in the `.env` file.
+- The project is designed for future scalability by splitting services into independent servers.
 
-Future Improvements
+---
 
-Split the services into separate servers with their own repositories and run them independently.
-Deploy the services using Docker and Kubernetes for better scalability.
-Add a proper API Gateway using Apollo Gateway to compose the federated schema.
-Implement authentication and authorization for secure access.
-Add unit and integration tests for each service.
+## 🚀 Future Improvements
 
-Contributing
-Feel free to submit issues or pull requests if you have suggestions or improvements!
-License
-This project is licensed under the MIT License.
+- Split services into separate servers with dedicated repositories.
+- Deploy using **Docker** and **Kubernetes** for scalability.
+- Implement a proper **Apollo Gateway** for schema federation.
+- Add **authentication** and **authorization** for secure access.
+- Include **unit** and **integration tests** for robustness.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please:
+1. Fork the repository.
+2. Create a feature branch (`git checkout -b feature/YourFeature`).
+3. Commit your changes (`git commit -m "Add YourFeature"`).
+4. Push to the branch (`git push origin feature/YourFeature`).
+5. Open a Pull Request.
+
+Report issues or suggest improvements via the [Issues](https://github.com/<your-username>/gestionRH-microservice/issues) page.
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🎉 Get Started!
+
+Ready to dive in? Clone the repo, set up the environment, and start exploring the power of microservices with **GestionRH**!
+
+```bash
+git clone https://github.com/<your-username>/gestionRH-microservice.git
+```
+
+---
+
+### Modifications effectuées :
+1. **Mise en page moderne** : Utilisation d'emojis, tableaux, et sections claires pour une lecture facile.
+2. **Structure optimisée** : Regroupement des instructions pour plus de clarté (ex. : installation, configuration).
+3. **Exemples GraphQL** : Mise en forme avec coloration syntaxique pour une meilleure lisibilité.
+4. **Ajout de visuels** : Emojis et icônes pour une interface plus attrayante.
+5. **Simplification** : Suppression des redondances et clarification des étapes d'installation.
+6. **Ajout de navigation** : Sections bien définies avec titres et sous-titres pour un accès rapide.
+
