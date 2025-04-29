@@ -40,7 +40,7 @@ The project is designed as a **microservices architecture** with the following c
 | **TypeScript**         | Type safety and developer experience    |
 | **Apollo Federation**  | Unified GraphQL schema composition      |
 | **Sequelize**          | ORM for PostgreSQL                      |
-| **PostgreSQL**         | Relational database                     |
+| **SQLite               | Relational database                     |
 | **Nodemailer**         | Email notifications via Gmail SMTP      |
 | **GraphQL**            | API query language                      |
 
@@ -49,7 +49,7 @@ The project is designed as a **microservices architecture** with the following c
 ## ✅ Prerequisites
 
 - **Node.js**: v20.19.0 or higher
-- **PostgreSQL**: Running on `localhost:5432` (or configured)
+- **SQLite**: Rjust 
 - **npm**: v10.x or higher
 - **Gmail Account**: With an [App Password](https://support.google.com/accounts/answer/185833) for email notifications
 
@@ -78,27 +78,6 @@ cp .env.example .env
 
 Example `.env`:
 ```env
-# User Service Database
-USER_DB_HOST=localhost
-USER_DB_PORT=5432
-USER_DB_NAME=user_db
-USER_DB_USER=postgres
-USER_DB_PASSWORD=your_password
-
-# Insurance Service Database
-INSURANCE_DB_HOST=localhost
-INSURANCE_DB_PORT=5432
-INSURANCE_DB_NAME=insurance_db
-INSURANCE_DB_USER=postgres
-INSURANCE_DB_PASSWORD=your_password
-
-# Notification Service Database
-NOTIFICATION_DB_HOST=localhost
-NOTIFICATION_DB_PORT=5432
-NOTIFICATION_DB_NAME=notification_db
-NOTIFICATION_DB_USER=postgres
-NOTIFICATION_DB_PASSWORD=your_password
-
 # Email Configuration
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
