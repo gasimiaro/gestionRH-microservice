@@ -9,8 +9,8 @@ export class NotificationService {
     port: 587,
     secure: false,
     auth: {
-      user: process.env.EMAIL_USER || 'zagameur13@gmail.com',
-      pass: process.env.EMAIL_PASSWORD || 'lszzzqfsjlzuwsep',
+      user: process.env.EMAIL_USER ||  "example@mail.com",
+      pass: process.env.EMAIL_PASSWORD || 'password',
     },
   });
 
@@ -93,7 +93,7 @@ export class NotificationService {
   static async sendUserMail(recipientEmail: string, recipientName: string, notification: CreateNotificationInput) {
     console.log(`Sending user email to: ${recipientEmail}`);
     const mailOptions = {
-      from: process.env.EMAIL_USER || 'zagameur13@gmail.com',
+      from: process.env.EMAIL_USER || 'test@example.com',
       to: recipientEmail,
       subject: 'Profile Update Notification',
       html: `
@@ -118,7 +118,7 @@ export class NotificationService {
   static async sendCompanyMail(recipientEmail: string, recipientName: string, notification: CreateNotificationInput) {
     console.log(`Sending company email to: ${recipientEmail}`);
     const mailOptions = {
-      from: process.env.EMAIL_USER || 'zagameur13@gmail.com',
+      from: process.env.EMAIL_USER || 'tsy@gmail.com',
       to: recipientEmail,
       subject: 'Beneficiary Profile Update Notification',
       html: `
