@@ -1,0 +1,13 @@
+{
+  "name": "insurance-microservices",
+  "version": "1.0.0",
+  "description": "A microservices-based insurance management system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "echo \"Please start each service individually\" && exit 1"
+  },
+  "keywords": ["microservices", "graphql", "apollo", "federation", "insurance"],
+  "author": "",
+  "license": "ISC"
+}
